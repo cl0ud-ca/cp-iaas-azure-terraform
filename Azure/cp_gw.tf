@@ -1,9 +1,9 @@
 # Create virtual machine and Accept the agreement for the sg-byol for R80.40
-resource "azurerm_marketplace_agreement" "checkpoint_gw" {
-  publisher = "checkpoint"
-  offer     = "check-point-cg-r8040"
-  plan      = "sg-byol"
-}
+#resource "azurerm_marketplace_agreement" "checkpoint_gw" {
+#  publisher = "checkpoint"
+#  offer     = "check-point-cg-r8040"
+#  plan      = "sg-byol"
+#}
 
 #CP GW NICS
 resource "azurerm_network_interface" "cp-gw-external" {
@@ -30,7 +30,7 @@ resource "azurerm_network_interface" "cp-gw-internal" {
         name                          = "cp-gw-internal-config"
         subnet_id                     = azurerm_subnet.cp-gw-internal-subnet.id
         private_ip_address_allocation = "Static"
-		private_ip_address = "10.95.1.10"
+		private_ip_address = "10.2.1.10"
     }
 }
 
