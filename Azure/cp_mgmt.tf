@@ -21,6 +21,12 @@ resource "azurerm_network_interface" "cp-mgmt-external" {
     }
 }
 
+#Associate Security Group with Internface
+
+resource "azurerm_network_interface_security_group_association" "victim-cpmgmt-nsg-int" {
+  network_interface_id      = azurerm_network_interface.cp-mgmt-external.id
+  network_security_group_id = azurerm_network_security_group.cp-mgmt-nsg.id
+  }
 
 
 #CP MGMT Virtual Machine
@@ -57,7 +63,7 @@ resource "azurerm_virtual_machine" "cp-mgmt" {
         computer_name  = "${var.company}-cp-mgmt"
         admin_username = "azureuser"
         admin_password = "Vpn123vpn123!"
-        custom_data = file("mgmt_bootstrap.sh") 
+        custom_data = file("test.sh") 
     }
 
     os_profile_linux_config {
