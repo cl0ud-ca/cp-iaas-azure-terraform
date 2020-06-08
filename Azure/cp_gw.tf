@@ -1,5 +1,5 @@
 # Create virtual machine and Accept the agreement for the sg-byol for R80.40
-resource "azurerm_marketplace_agreement" "checkpoint" {
+resource "azurerm_marketplace_agreement" "checkpoint_gw" {
   publisher = "checkpoint"
   offer     = "check-point-cg-r8040"
   plan      = "sg-byol"
@@ -28,7 +28,7 @@ resource "azurerm_network_interface" "cp-gw-internal" {
     enable_ip_forwarding = "true"
 	ip_configuration {
         name                          = "cp-gw-internal-config"
-        subnet_id                     = azurerm_subnet.Internal_subnet.id
+        subnet_id                     = azurerm_subnet.cp-gw-internal-subnet.id
         private_ip_address_allocation = "Static"
 		private_ip_address = "10.95.1.10"
     }
@@ -40,7 +40,7 @@ resource "azurerm_network_interface_security_group_association" "cp-gw-nsg-int" 
   network_interface_id      = azurerm_network_interface.cp-gw-external.id
   network_security_group_id = azurerm_network_security_group.cp-gw-nsg.id
   }
-resource "azurerm_network_interface_security_group_association" "cp-gw-nsg-int" {
+resource "azurerm_network_interface_security_group_association" "cp-gw-nsg-int2" {
   network_interface_id      = azurerm_network_interface.cp-gw-internal.id
   network_security_group_id = azurerm_network_security_group.cp-gw-nsg.id
   }
@@ -80,7 +80,7 @@ resource "azurerm_virtual_machine" "cp-gw" {
         computer_name  = "${var.company}-cp-gw"
         admin_username = "azureuser"
         admin_password = "Vpn123vpn123!"
-        custom_data = file("gw_bootstrap.sh") 
+        custom_data = file("gw-bootstrap.sh") 
     }
 
     os_profile_linux_config {

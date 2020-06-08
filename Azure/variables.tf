@@ -35,6 +35,12 @@ variable "gw-network-subnet-cidr" {
   description = "Gateway Subnet"
 }
 
+# Gateway INTERNAL Subnet
+variable "gw-network-internal-subnet-cidr" {
+  type        = string
+  description = "Gateway Subnet"
+}
+
 
 # VM VNET
 variable "vm-network-vnet-cidr" {
@@ -54,6 +60,8 @@ variable "environment" {
   description = "Staging or Production"
 }
 
+
+
 # username
 variable "username" {
   type        = string
@@ -66,13 +74,6 @@ variable "password" {
   description = "Password"
 }
 
-#Check Point FTW Setting
-
-# installation_type
-variable "installation-type-mgmt" {
-  type        = string
-  description = "Password"
-}
 
 
 

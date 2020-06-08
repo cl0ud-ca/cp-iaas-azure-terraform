@@ -97,7 +97,7 @@ resource "azurerm_network_security_group" "cp-mgmt-nsg" {
 
 
 #Gateway NSG
-resource "azurerm_network_security_group" "cp-gw-rg" {
+resource "azurerm_network_security_group" "cp-gw-nsg" {
   depends_on=[azurerm_resource_group.cp-gw-rg]
   name = "cp-gw-nsg"
   location            = azurerm_resource_group.cp-gw-rg.location
