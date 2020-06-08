@@ -4,7 +4,7 @@
 installationType="gateway"
 bootstrapScript64=""
 templateName="gateway"
-templateVersion="20200331"
+templateVersion="20200508"
 isBlink="false"
 osVersion="R8040"
 sicKey="Vpn123vpn123"
