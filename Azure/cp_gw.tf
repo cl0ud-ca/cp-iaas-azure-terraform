@@ -1,9 +1,9 @@
 # Create virtual machine and Accept the agreement for the sg-byol for R80.40
-resource "azurerm_marketplace_agreement" "checkpoint_gw" {
-  publisher = "checkpoint"
-  offer     = "check-point-cg-r8040"
-  plan      = "sg-byol"
-}
+#resource "azurerm_marketplace_agreement" "checkpoint_gw" {
+#  publisher = "checkpoint"
+#  offer     = "check-point-cg-r8040"
+#  plan      = "sg-byol"
+#}
 
 #CP GW NICS
 resource "azurerm_network_interface" "cp-gw-external" {
@@ -55,7 +55,7 @@ resource "azurerm_virtual_machine" "cp-gw" {
     primary_network_interface_id = azurerm_network_interface.cp-gw-external.id
     vm_size               = "Standard_D4s_v3"
     
-    depends_on = [azurerm_marketplace_agreement.checkpoint_gw]
+ #   depends_on = [azurerm_marketplace_agreement.checkpoint_gw]
 
     storage_os_disk {
         name              = "cp-gw-disk"
