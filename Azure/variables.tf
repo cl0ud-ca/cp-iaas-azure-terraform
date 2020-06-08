@@ -54,12 +54,18 @@ variable "vm-network-subnet-cidr" {
   description = "VM Subnet"
 }
 
+
+#SIC Key
+variable "sic_key" {
+  type        = string
+  description = "Sic Key"
+}
+
 # environment
 variable "environment" {
   type        = string
   description = "Staging or Production"
 }
-
 
 
 # username

@@ -15,3 +15,4 @@ environment = "Staging"
 username = "mike"
 password = "Vpn123vpn123!"
 
+sic_key ="Vpn123vpn123"

@@ -1,10 +1,3 @@
-# Create virtual machine and Accept the agreement for the sg-byol for R80.40
-#resource "azurerm_marketplace_agreement" "checkpoint_gw" {
-#  publisher = "checkpoint"
-#  offer     = "check-point-cg-r8040"
-#  plan      = "sg-byol"
-#}
-
 #CP GW NICS
 resource "azurerm_network_interface" "cp-gw-external" {
     name                = "cp-gw-external"
@@ -51,12 +44,10 @@ resource "azurerm_virtual_machine" "cp-gw" {
     name                  = "${var.company}-cp-gw"
     location              = azurerm_resource_group.cp-gw-rg.location
     resource_group_name   = azurerm_resource_group.cp-gw-rg.name
-    network_interface_ids = [azurerm_network_interface.cp-gw-external.id]
+    network_interface_ids = [azurerm_network_interface.cp-gw-external.id,azurerm_network_interface.cp-gw-internal.id]
     primary_network_interface_id = azurerm_network_interface.cp-gw-external.id
     vm_size               = "Standard_D4s_v3"
     
- #   depends_on = [azurerm_marketplace_agreement.checkpoint_gw]
-
     storage_os_disk {
         name              = "cp-gw-disk"
         caching           = "ReadWrite"
@@ -80,7 +71,10 @@ resource "azurerm_virtual_machine" "cp-gw" {
         computer_name  = "${var.company}-cp-gw"
         admin_username = "azureuser"
         admin_password = "Vpn123vpn123!"
-        custom_data = file("gw-bootstrap.sh") 
+        custom_data = file("gw-bootstrap.sh",{
+            sic_key=var.sic_key
+            }
+        ) 
     }
 
     os_profile_linux_config {
