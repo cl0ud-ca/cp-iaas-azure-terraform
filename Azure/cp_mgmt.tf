@@ -1,9 +1,9 @@
 # Create virtual machine and Accept the agreement for the mgmt-byol for R80.40
-resource "azurerm_marketplace_agreement" "checkpoint" {
-  publisher = "checkpoint"
-  offer     = "check-point-cg-r8040"
-  plan      = "mgmt-byol"
-}
+#resource "azurerm_marketplace_agreement" "checkpoint" {
+#  publisher = "checkpoint"
+#  offer     = "check-point-cg-r8040"
+#  plan      = "mgmt-byol"
+#}
 
 #CP MGMT NIC
 resource "azurerm_network_interface" "cp-mgmt-external" {
@@ -38,7 +38,7 @@ resource "azurerm_virtual_machine" "cp-mgmt" {
     primary_network_interface_id = azurerm_network_interface.cp-mgmt-external.id
     vm_size               = "Standard_D4s_v3"
     
-    depends_on = [azurerm_marketplace_agreement.checkpoint]
+ #   depends_on = [azurerm_marketplace_agreement.checkpoint]
 
     storage_os_disk {
         name              = "cp-mgmt-disk"

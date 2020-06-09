@@ -1,5 +1,5 @@
-# Generate random text for a unique storage account name
-resource "random_id" "randomId" {
+
+resource "random_id" "randomId2" {
     keepers = {
         # Generate a new ID only when a new resource group is defined
         resource_group = "${azurerm_resource_group.cp-mgmt-rg.name}"
@@ -7,4 +7,3 @@ resource "random_id" "randomId" {
 
     byte_length = 8
 }
-
