@@ -35,7 +35,11 @@ variable "password" {
   description = "Password"
 }
 
-
+# environment
+variable "environment" {
+  type        = string
+  description = "Staging or Production"
+}
 
 
 
