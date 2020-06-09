@@ -8,5 +8,5 @@ resource "azurerm_public_ip" "cp-mgmt-public-ip" {
 
 # Output the public ip of the gateway
 output "CP_Gateway_Public_IP" {
-    value = azurerm_public_ip.cp-gw-public-ip.ip_address
+    value = azurerm_public_ip.cp-mgmt-public-ip.ip_address
 }
