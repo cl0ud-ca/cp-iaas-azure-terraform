@@ -67,11 +67,14 @@ resource "azurerm_virtual_machine" "cp-gw" {
         publisher = "checkpoint"
         product = "check-point-cg-r8040"
         }
+    
+#Need to fix passing varible to gw-bootstrap.sh. Currently requires var to be hardcoded in file
+
     os_profile {
         computer_name  = "${var.company}-cp-gw"
         admin_username = "azureuser"
         admin_password = "Vpn123vpn123!"
-        custom_data = templatefile("gw-bootstrap.sh",{
+        custom_data = templatefile("./gw-bootstrap.sh",{
             sic_key=var.sic_key
             }
         ) 
