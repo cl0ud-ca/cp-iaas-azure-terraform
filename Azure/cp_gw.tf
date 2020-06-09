@@ -71,7 +71,7 @@ resource "azurerm_virtual_machine" "cp-gw" {
         computer_name  = "${var.company}-cp-gw"
         admin_username = "azureuser"
         admin_password = "Vpn123vpn123!"
-        custom_data = file("gw-bootstrap.sh",{
+        custom_data = templatefile("gw-bootstrap.sh",{
             sic_key=var.sic_key
             }
         ) 
