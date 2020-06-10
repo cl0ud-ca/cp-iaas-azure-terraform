@@ -30,25 +30,6 @@ variable "gw-network-internal-subnet-cidr" {
 }
 
 
-# VM VNET
-variable "vm-network-vnet-cidr" {
-  type        = string
-  description = "VM VNET"
-}
-
-# VM Subnet
-variable "vm-network-subnet-cidr" {
-  type        = string
-  description = "VM Subnet"
-}
-
-# environment
-variable "environment" {
-  type        = string
-  description = "Staging or Production"
-}
-
-
 # username
 variable "username" {
   type        = string
