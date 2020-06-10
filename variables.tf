@@ -48,5 +48,9 @@ variable "environment" {
   description = "Staging or Production"
 }
 
-
+# SIC Key
+variable "sic_key" {
+  type        = string
+  description = "Username"
+}
 
