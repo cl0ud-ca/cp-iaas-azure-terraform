@@ -88,5 +88,10 @@ resource "azurerm_virtual_machine" "cp-gw" {
         enabled = "true"
         storage_uri = azurerm_storage_account.cp-gw-storage-account.primary_blob_endpoint
     }
+    tags = {
+          x-chkp-template = "AzureConnect"
+          x-chkp-management = "CP-MGMT"
+          x-chkp-ip-address = "public"
+      }
 
 }
