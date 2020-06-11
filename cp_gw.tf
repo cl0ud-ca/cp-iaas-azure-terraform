@@ -90,7 +90,7 @@ resource "azurerm_virtual_machine" "cp-gw" {
     }
     tags = {
           x-chkp-template = "AzureConnect"
-          x-chkp-management = "CP-MGMT"
+          x-chkp-management = var.mgmt_name
           x-chkp-ip-address = "public"
       }
 

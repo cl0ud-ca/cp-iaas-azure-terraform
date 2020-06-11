@@ -54,3 +54,8 @@ variable "sic_key" {
   description = "Username"
 }
 
+# MGTM NAme
+variable "mgmt_name" {
+  type        = string
+  description = "Management name for autoprovision"
+}
