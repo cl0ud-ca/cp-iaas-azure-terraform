@@ -92,10 +92,10 @@ resource "azurerm_virtual_machine" "cp-gw" {
           x-chkp-template = "AzureConnect"
           x-chkp-management = var.mgmt_name
           x-chkp-ip-address = "public"
-          x-chkp-anti-spoofing = eth0:false,eth1:false
-          x-chkp-management-interface = eth0
-          x-chkp-srcImageUri = noCustomUri
-          x-chkp-topology = eth0:external,eth1:internal
+          x-chkp-anti-spoofing = "eth0:false,eth1:false"
+          x-chkp-management-interface = "eth0"
+          x-chkp-srcImageUri = "noCustomUri"
+          x-chkp-topology = "eth0:external,eth1:internal"
           
       }
 
