@@ -1,3 +1,14 @@
+#Variable Processing
+# Setup the userdata that will be used for the instance
+data "template_file" "userdata_setup" {
+  template = "${file("userdata_setup.template")}"
+
+  vars  = {
+    sic_key       = "${var.sic_key}"
+    logic = "${file("gw-bootstrap.sh")}"
+  }
+}
+
 #CP GW NICS
 resource "azurerm_network_interface" "cp-gw-external" {
     name                = "cp-gw-external"
@@ -8,7 +19,7 @@ resource "azurerm_network_interface" "cp-gw-external" {
         name                          = "cp-gw-public-ip-config"
         subnet_id                     = azurerm_subnet.cp-gw-subnet.id
         private_ip_address_allocation = "Static"
-		private_ip_address = "10.0.1.10"
+		private_ip_address = gw-external-private-ip
         primary = true
 		public_ip_address_id = azurerm_public_ip.cp-gw-public-ip.id
     }
@@ -23,7 +34,8 @@ resource "azurerm_network_interface" "cp-gw-internal" {
         name                          = "cp-gw-internal-config"
         subnet_id                     = azurerm_subnet.cp-gw-internal-subnet.id
         private_ip_address_allocation = "Static"
-		private_ip_address = "10.0.2.10"
+		private_ip_address = gw-internal-private-ip
+
     }
 }
 
@@ -74,9 +86,7 @@ resource "azurerm_virtual_machine" "cp-gw" {
         computer_name  = "${var.company}-cp-gw"
         admin_username = "azureuser"
         admin_password = "Vpn123vpn123!"
-        custom_data = templatefile("./gw-bootstrap.sh",{
-            sic_key=var.sic_key
-            }
+        custom_data = data.template_file.userdata_setup.rendered
         ) 
     }
 

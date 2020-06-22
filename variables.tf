@@ -23,12 +23,24 @@ variable "gw-network-subnet-cidr" {
   description = "Gateway Subnet"
 }
 
+# Gateway External Private IP
+variable "gw-external-private-ip" {
+  type        = string
+  description = "Gateway Subnet"
+}
+
+
 # Gateway INTERNAL Subnet
 variable "gw-network-internal-subnet-cidr" {
   type        = string
   description = "Gateway Subnet"
 }
 
+# Gateway Intertal Private IP
+variable "gw-internal-private-ip" {
+  type        = string
+  description = "Gateway Subnet"
+}
 
 # username
 variable "username" {
@@ -54,7 +66,7 @@ variable "sic_key" {
   description = "Username"
 }
 
-# MGTM NAme
+# MGMT Name
 variable "mgmt_name" {
   type        = string
   description = "Management name for autoprovision"
