@@ -71,3 +71,9 @@ variable "mgmt_name" {
   type        = string
   description = "Management name for autoprovision"
 }
+
+# Template Name
+variable "cme_template" {
+  type        = string
+  description = "Management name for autoprovision"
+}

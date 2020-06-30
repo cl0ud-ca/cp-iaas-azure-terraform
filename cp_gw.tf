@@ -104,7 +104,7 @@ resource "azurerm_virtual_machine" "cp-gw" {
         storage_uri = azurerm_storage_account.cp-gw-storage-account.primary_blob_endpoint
     }
     tags = {
-          x-chkp-template = "AzureConnect"
+          x-chkp-template = var.cme_template
           x-chkp-management = var.mgmt_name
           x-chkp-ip-address = "public"
           x-chkp-anti-spoofing = "eth0:false,eth1:false"
